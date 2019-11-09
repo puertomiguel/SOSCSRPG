@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUI", "WPFUI\WPFUI.csproj", "{48EA7358-9A93-4327-AFF6-7EDA2BB6038B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48EA7358-9A93-4327-AFF6-7EDA2BB6038B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EA7358-9A93-4327-AFF6-7EDA2BB6038B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EA7358-9A93-4327-AFF6-7EDA2BB6038B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EA7358-9A93-4327-AFF6-7EDA2BB6038B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1D8F152-8FDE-4B00-8AA9-6A5F0D4597A6}
+	EndGlobalSection
+EndGlobal
