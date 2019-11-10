@@ -22,6 +22,7 @@ namespace Engine.Models
                      int rewardExperiencePoints, int rewardGold, List<ItemQuanitity> rewardItems)
         {
             ID = id;
+            Name = name;
             Description = description;
             ItemsToComplete = itemsToComplete;
             RewardExperiencePoints = rewardExperiencePoints;
