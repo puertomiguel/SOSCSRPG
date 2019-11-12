@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using Engine.Models;
 using Engine.ViewModels;
 
@@ -30,11 +18,12 @@ namespace WPFUI
 
         private void OnClick_Sell(object sender, RoutedEventArgs e)
         {
-            GroupedInventoryItem itegroupedInventoryItemm = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
+            GroupedInventoryItem itegroupedInventoryItemm =
+                ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
 
             if (itegroupedInventoryItemm != null)
             {
-                Session.CurrentPlayer.Gold += itegroupedInventoryItemm.Item.Price;
+                Session.CurrentPlayer.ReceiveGold(itegroupedInventoryItemm.Item.Price);
                 Session.CurrentTrader.AddItemToInventory(itegroupedInventoryItemm.Item);
                 Session.CurrentPlayer.RemoveItemFromInventory(itegroupedInventoryItemm.Item);
             }
@@ -49,7 +38,7 @@ namespace WPFUI
             {
                 if (Session.CurrentPlayer.Gold >= groupedInventoryItem.Item.Price)
                 {
-                    Session.CurrentPlayer.Gold -= groupedInventoryItem.Item.Price;
+                    Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
                     Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
                     Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
                 }
@@ -59,6 +48,7 @@ namespace WPFUI
                 }
             }
         }
+
         private void OnClick_Close(object sender, RoutedEventArgs e)
         {
             Close();

@@ -1,10 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine.Models
 {
@@ -45,8 +41,13 @@ namespace Engine.Models
 
         public ObservableCollection<QuestStatus> Quests { get; set; }
 
-        public Player()
+        public Player(string name, string characterClass, int experiencePoints,
+            int maximumHitPoints, int currentHitPoints, int gold) :
+            base(name, maximumHitPoints, currentHitPoints, gold)
         {
+            CharacterClass = characterClass;
+            ExperiencePoints = experiencePoints;
+
             Quests = new ObservableCollection<QuestStatus>();
         }
 
