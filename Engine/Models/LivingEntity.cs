@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine.Models
 {
@@ -56,17 +53,36 @@ namespace Engine.Models
 
         public ObservableCollection<GameItem> Inventory { get; set; }
 
+        public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; set; }
+
         public List<GameItem> Weapons =>
             Inventory.Where(i => i is Weapon).ToList();
 
         protected LivingEntity()
         {
             Inventory = new ObservableCollection<GameItem>();
+            GroupedInventory = new ObservableCollection<GroupedInventoryItem>();
         }
 
         public void AddItemToInventory(GameItem item)
         {
             Inventory.Add(item);
+
+            if (item.IsUnique)
+            {
+                GroupedInventory.Add(new GroupedInventoryItem(item, 1));
+            }
+            else
+            {
+                if (!GroupedInventory.Any(gi => gi.Item.ItemTypeID == item.ItemTypeID))
+                {
+                    // create item "category" but set to 0 pending below line of code
+                    GroupedInventory.Add(new GroupedInventoryItem(item, 0));
+                }
+
+                // increase quantity by 1, which runs even on above addition (hence 0)
+                GroupedInventory.First(gi => gi.Item.ItemTypeID == item.ItemTypeID).Quantity++;
+            }
 
             OnPropertyChanged(nameof(Weapons));
         }
@@ -74,6 +90,21 @@ namespace Engine.Models
         public void RemoveItemFromInventory(GameItem item)
         {
             Inventory.Remove(item);
+
+            GroupedInventoryItem groupedInventoryItemToRemove =
+                GroupedInventory.FirstOrDefault(gi => gi.Item == item);
+
+            if (groupedInventoryItemToRemove != null)
+            {
+                if (groupedInventoryItemToRemove.Quantity == 1)
+                {
+                    GroupedInventory.Remove(groupedInventoryItemToRemove);
+                }
+                else
+                {
+                    groupedInventoryItemToRemove.Quantity--;
+                }
+            }
 
             OnPropertyChanged(nameof(Weapons));
         }
