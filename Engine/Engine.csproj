@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\AttackWithWeapon.cs" />
     <Compile Include="BaseNotificationClass.cs" />
     <Compile Include="EventArgs\GameMessageEventArgs.cs" />
     <Compile Include="Factories\ItemFactory.cs" />
@@ -80,8 +81,6 @@
     <Resource Include="Images\Locations\TownSquare.png" />
     <Resource Include="Images\Locations\Trader.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Actions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
