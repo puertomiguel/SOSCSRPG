@@ -1,42 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Engine.Models;
 
 namespace Engine.Factories
 {
     public static class ItemFactory
     {
-        private static readonly List<GameItem> _standardGameItem = new List<GameItem>();
+        private static readonly List<GameItem> _standardGameItems = new List<GameItem>();
 
         static ItemFactory()
         {
-            _standardGameItem.Add(new Weapon(1001, "Pointy Stick", 1, 1, 2));
-            _standardGameItem.Add(new Weapon(1002, "Rusty Sword", 5, 1, 3));
-            _standardGameItem.Add(new GameItem(9001, "Snake Fang", 1));
-            _standardGameItem.Add(new GameItem(9002, "Snakeskin", 2));
-            _standardGameItem.Add(new GameItem(9003, "Rat Tail", 1));
-            _standardGameItem.Add(new GameItem(9004, "Rat Fur", 2));
-            _standardGameItem.Add(new GameItem(9005, "Spider Fang", 1));
-            _standardGameItem.Add(new GameItem(9006, "Spider Silk", 2));
+            BuildWeapon(1001, "Pointy Stick", 1, 1, 2);
+            BuildWeapon(1002, "Rusty Sword", 5, 1, 3);
+
+            BuildMiscellaneousItem(9001, "Snake Fang", 1);
+            BuildMiscellaneousItem(9002, "Snakeskin", 2);
+            BuildMiscellaneousItem(9003, "Rat Tail", 1);
+            BuildMiscellaneousItem(9004, "Rat Fur", 2);
+            BuildMiscellaneousItem(9005, "Spider Fang", 1);
+            BuildMiscellaneousItem(9006, "Spider Silk", 2);
         }
 
         public static GameItem CreateGameItem(int itemTypeID)
         {
-            GameItem standardItem = _standardGameItem.FirstOrDefault(item => item.ItemTypeID == itemTypeID);
+            return _standardGameItems.FirstOrDefault(item => item.ItemTypeID == itemTypeID)?.Clone();
+        }
 
-            if (standardItem != null)
-            {
-                if (standardItem is Weapon)
-                {
-                    return (standardItem as Weapon).Clone();
-                }
-                return standardItem.Clone();
-            }
+        private static void BuildMiscellaneousItem(int id, string name, int price)
+        {
+            _standardGameItems.Add(new GameItem(GameItem.ItemCategory.Miscellaneous, id, name, price));
+        }
 
-            return null;
+        private static void BuildWeapon(int id, string name, int price,
+                                        int minimumDamage, int maximumDamage)
+        {
+            _standardGameItems.Add(new GameItem(GameItem.ItemCategory.Weapon, id, name, price,
+                                                true, minimumDamage, maximumDamage));
         }
     }
 }

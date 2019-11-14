@@ -96,7 +96,7 @@ namespace Engine.ViewModels
             }
         }
 
-        public Weapon CurrentWeapon { get; set; }
+        public GameItem CurrentWeapon { get; set; }
 
         public bool HasLocationToNorth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
@@ -283,7 +283,8 @@ namespace Engine.ViewModels
         {
             // If player dies, revive at home
             RaiseMessage("");
-            RaiseMessage($"The {CurrentMonster.Name} killed you.");
+            //RaiseMessage($"The {CurrentMonster.Name} killed you.");
+            RaiseMessage($"You have been killed.");
 
             CurrentLocation = CurrentWorld.LocationAt(0, -1); // Player home
             CurrentPlayer.CompletelyHeal();
