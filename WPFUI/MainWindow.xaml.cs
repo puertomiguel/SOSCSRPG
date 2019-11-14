@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+﻿using System.Windows;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Engine.ViewModels;
 using Engine.EventArgs;
 
@@ -56,6 +44,11 @@ namespace WPFUI
         private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
         {
             _gameSession.AttackCurrentMonster();
+        }
+
+        private void OnClick_UseCurrentConsumable(object sender, RoutedEventArgs e)
+        {
+            _gameSession.UseCurrentConsumable();
         }
 
         private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
