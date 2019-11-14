@@ -1,15 +1,16 @@
 ﻿using System;
 using Engine.Models;
+using Engine.Actions;
 
 namespace Engine.Actions
 {
-    public class AttackWithWeapon
+    public class AttackWithWeapon : IAction
     {
         private readonly GameItem _weapon;
         private readonly int _maximumDamage;
         private readonly int _minimumDamage;
 
-        public EventHandler<string> OnActionPerformed;
+        public event EventHandler<string> OnActionPerformed;
 
         public AttackWithWeapon(GameItem weapon, int minimumDamange, int maximumDamage)
         {
