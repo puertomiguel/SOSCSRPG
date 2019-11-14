@@ -39,13 +39,17 @@ namespace Engine.Actions
             // Calculate RNG damage to target
             int damage = RandomNumberGenerator.NumberBetween(_minimumDamage, _maximumDamage);
 
+            string actorName = (actor is Player) ? "You" : $"The {actor.Name.ToLower()}";
+            string targetName = (target is Player) ? "you" : $"the {target.Name.ToLower()}";
+
             if (damage == 0)
             {
-                ReportResult($"You missed the {target.Name.ToLower()}.");
+                ReportResult($"{actorName} missed {targetName}.");
             }
             else
             {
-                ReportResult($"You hit the {target.Name.ToLower()} for {damage} damage.");
+                ReportResult($"{actorName} hit {targetName} for {damage} damage.");
+
                 target.TakeDamage(damage);
             }
         }
