@@ -264,6 +264,12 @@ namespace Engine.ViewModels
 
         public void UseCurrentConsumable()
         {
+            if (CurrentPlayer.CurrentConsumable == null)
+            {
+                RaiseMessage("You must select a consumable to use.");
+                return;
+            }
+
             CurrentPlayer.UseCurrentConsumable();
         }
 
