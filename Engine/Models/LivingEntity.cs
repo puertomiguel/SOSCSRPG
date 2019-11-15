@@ -222,7 +222,7 @@ namespace Engine.Models
 
             GroupedInventoryItem groupedInventoryItemToRemove = item.IsUnique ?
                 GroupedInventory.FirstOrDefault(gi => gi.Item == item) :
-                GroupedInventory.FirstOrDefault(gi => item.ItemTypeID == item.ItemTypeID);
+                GroupedInventory.FirstOrDefault(gi => gi.Item.ItemTypeID == item.ItemTypeID);
 
             if (groupedInventoryItemToRemove != null)
             {
@@ -239,6 +239,30 @@ namespace Engine.Models
             OnPropertyChanged(nameof(Weapons));
             OnPropertyChanged(nameof(Consumables));
             OnPropertyChanged(nameof(HasConsumable));
+        }
+
+        public void RemoveItemsFromInventory(List<ItemQuanitity> itemQuanitities)
+        {
+            foreach (ItemQuanitity itemQuanitity in itemQuanitities)
+            {
+                for (int i = 0; i < itemQuanitity.Quantity; i++)
+                {
+                    RemoveItemFromInventory(Inventory.First(item => item.ItemTypeID == itemQuanitity.ItemID));
+                }
+            }
+        }
+
+        public bool HasAllTheseItems(List<ItemQuanitity> items)
+        {
+            foreach (ItemQuanitity item in items)
+            {
+                if (Inventory.Count(i=>i.ItemTypeID==item.ItemID)<item.Quantity)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #region Private Functions
