@@ -91,9 +91,9 @@ namespace WPFUI
             _userInputActions.Add(Key.D, () => _gameSession.MoveEast());
             _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
             _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
-            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem");
-            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem");
-            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem");
+            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
+            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
             _userInputActions.Add(Key.T, () => OnClick_DisplayTradeScreen(this, new RoutedEventArgs()));
         }
 
