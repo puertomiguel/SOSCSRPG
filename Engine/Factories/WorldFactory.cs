@@ -49,7 +49,7 @@ namespace Engine.Factories
                                  $".{rootImagePath}{node.AttributeAsString("ImageName")}");
 
                 AddMonsters(location, node.SelectNodes("./Monsters/Monster"));
-                AddQuests(location, node.SelectNodes("./Quests.Quest"));
+                AddQuests(location, node.SelectNodes("./Quests/Quest"));
                 AddTrader(location, node.SelectSingleNode("./Trader"));
 
                 world.AddLocation(location);
@@ -92,7 +92,7 @@ namespace Engine.Factories
             }
 
             location.TraderHere =
-                TraderFactory.GetTraderByName(traderHere.AttributeAsString("Name"));
+                TraderFactory.GetTraderByID(traderHere.AttributeAsInt("ID"));
         }
     }
 }
